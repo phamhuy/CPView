@@ -7,6 +7,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MenuFormComponent } from './components/menu-form/menu-form.component';
 import { ViewFormComponent } from './components/view-form/view-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     LoginFormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
