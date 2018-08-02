@@ -1,0 +1,16 @@
+<form (ngSubmit)="onSubmit">
+  <div class="form-group">
+    <label for="gateway-ip">Gateway IP</label>
+    <input type="text" class="form-control" id="gateway-ip"
+           required
+           [(ngModel)]="ip" name="ip"
+           >
+  </div>
+
+  <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password"
+             required
+             [(ngModel)]="password" name="password">
+  </div>
+</form>

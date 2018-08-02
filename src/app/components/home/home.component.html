@@ -1,3 +1,11 @@
-<p>
-  home works!
-</p>
+<mat-tab-group class="center">
+  <mat-tab label="Local">
+    <div style="padding:10px;">
+      <button mat-raised-button color="primary" onclick="document.getElementById('file').click();">Upload</button>
+      <input id="file" type="file" style="display: none;">
+    </div>
+  </mat-tab>
+  <mat-tab label="Gateway">
+    <app-gateway-login-form></app-gateway-login-form>
+  </mat-tab>
+</mat-tab-group>
