@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileLoaderService } from '../../services/file-loader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,10 @@ export class HomeComponent implements OnInit {
   menus: any;
   views: any;
 
-  constructor(private fileLoaderService : FileLoaderService) { }
+  constructor(
+    private fileLoaderService : FileLoaderService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -20,6 +24,7 @@ export class HomeComponent implements OnInit {
     this.fileLoaderService.loadFile(file).subscribe(([menus, views]) => {
       this.menus = menus;
       this.views = views;
+      this.router.navigate(['/editor']);
     });
   }
 
