@@ -6,18 +6,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FileLoaderService {
+  cpview_conf$ : Observable<[any, any]>;
 
   constructor() { }
 
-  loadFile(file) : Observable<[any, Array<any>]> {
-    let fileReader = new FileReader();
-    fileReader.readAsText(file);
-
-    return Observable.create(observer => {
-      // If success
+  loadFile(file) {
+    this.cpview_conf$ = new Observable(observer => {
+      let fileReader = new FileReader();
+      fileReader.readAsText(file);
       fileReader.onload = () => {
         let cpview_conf = JSON.parse(xml2json(fileReader.result, {compact: true}));
-        let menus = cpview_conf.CPViewConfig.Menus.Menu;
+        let menus = cpview_conf.CPViewConfig.Menus;
         let views_arr = cpview_conf.CPViewConfig.Views.View;
 
         // Convert views into a dictionary with viewtag as key
@@ -25,12 +24,14 @@ export class FileLoaderService {
         for (let view of views_arr) {
           views[view._attributes.viewtag] = view;
         }
+
         observer.next([menus, views]);
-      };
-
-      // If failed
-      fileReader.onerror = (err) => observer.error(err);
-
+      }
     });
+
+  }
+
+  getConfig() {
+    return this.cpview_conf$;
   }
 }

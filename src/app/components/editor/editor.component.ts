@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FileLoaderService } from '../../services/file-loader.service';
 
 @Component({
   selector: 'app-editor',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fileLoader : FileLoaderService) { }
 
   ngOnInit() {
+    this.fileLoader.getConfig().subscribe(([menus, views]) => {
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FileLoaderService } from '../../services/file-loader.service';
 import { Router } from '@angular/router';
 
@@ -8,9 +8,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  menus: any;
-  views: any;
-
   constructor(
     private fileLoaderService : FileLoaderService,
     private router: Router
@@ -21,11 +18,8 @@ export class HomeComponent implements OnInit {
 
   onChanged(e) {
     let file = e.target.files[0];
-    this.fileLoaderService.loadFile(file).subscribe(([menus, views]) => {
-      this.menus = menus;
-      this.views = views;
-      this.router.navigate(['/editor']);
-    });
+    this.fileLoaderService.loadFile(file);
+    this.router.navigate(['/editor']);
   }
 
 }
