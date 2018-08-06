@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FileLoaderService } from '../../services/file-loader.service';
-import { xml2json, json2xml } from 'xml-js';
 
 @Component({
   selector: 'app-home',
