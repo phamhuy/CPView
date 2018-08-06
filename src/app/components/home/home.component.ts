@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FileLoaderService } from '../../services/file-loader.service';
+import { xml2json, json2xml } from 'xml-js';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  menus: any;
+  views: any;
 
-  constructor() { }
+  constructor(private fileLoaderService : FileLoaderService) { }
 
   ngOnInit() {
+  }
+
+  onChanged(e) {
+    let file = e.target.files[0];
+    this.fileLoaderService.loadFile(file).subscribe(([menus, views]) => {
+      this.menus = menus;
+      this.views = views;
+    });
   }
 
 }
