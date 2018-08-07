@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FileLoaderService {
-  cpview_conf$ : Observable<[any, any]>;
+  cpview_conf$ : Observable<[any, any]> = new Observable();
 
   constructor() { }
 
@@ -16,7 +16,7 @@ export class FileLoaderService {
       fileReader.readAsText(file);
       fileReader.onload = () => {
         let cpview_conf = JSON.parse(xml2json(fileReader.result, {compact: true}));
-        let menus = cpview_conf.CPViewConfig.Menus;
+        let menus = cpview_conf.CPViewConfig.Menus; delete menus._attributes;
         let views_arr = cpview_conf.CPViewConfig.Views.View;
 
         // Convert views into a dictionary with viewtag as key
