@@ -24,9 +24,10 @@ export class EditorComponent implements OnInit {
     this.viewsForm = this.fb.group({
       views: this.fb.array([])
     })
-    this.fileLoader.getConfig().subscribe(([menus, views]) => {
-      console.log(menus);
-      // for (let menu in menus) {
+    this.fileLoader.getConfig().subscribe(([menu, views]) => {
+      console.log(menu);
+      // console.log(views);
+      // for (let name in menu) {
       //   this.menus.push(this.fb.control(menu));
       // }
 
@@ -35,7 +36,7 @@ export class EditorComponent implements OnInit {
       }
 
       // console.log(this.views);
-      console.log(this.menus);
+      // console.log(this.menu);
     });
 
   }
