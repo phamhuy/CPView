@@ -38,12 +38,12 @@ export class FileLoaderService {
   }
 
   private _flatten_menu(menu) {
-    let flattened_menu = {};
+    let flattened_menu = [];
     for (let elem of menu.elements) {
       if (elem.name == 'Menu' || elem.name == 'Menus') {
-        flattened_menu[elem.attributes.name] = this._flatten_menu(elem);
+        flattened_menu.push({[elem.attributes.name]:this._flatten_menu(elem)};
       } else if (elem.name == 'View' || elem.name == 'DynamicView') {
-        flattened_menu[elem.attributes.viewtag] = 1;
+        flattened_menu.push(elem.attributes.viewtag);
       }
     }
 
