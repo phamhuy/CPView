@@ -1,2 +1,10 @@
-<app-menu-form [menu]="menu"></app-menu-form>
-<app-view-form [views]="views"></app-view-form>
+<div class="center">
+  <mat-grid-list cols="1" rowHeight="400">
+    <mat-grid-tile>
+      <app-menu-form [menu$]="menu" [views$]="views" (changeView)="onChangeView($event)"></app-menu-form>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <app-view-form [view]="view"></app-view-form>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

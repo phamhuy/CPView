@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./view-form.component.css']
 })
 export class ViewFormComponent implements OnInit {
-  @Input() views: any;
+  @Input() view: any;
   constructor() { }
 
   ngOnInit() {

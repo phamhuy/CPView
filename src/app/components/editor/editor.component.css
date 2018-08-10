@@ -1,10 +1,10 @@
+mat-grid-tile {
+	background: lightblue;
+}
+
 .center {
 	margin: auto;
 	max-width: 500px;
 	min-width: 150px;
 	padding: 10px;
-}
-
-.inline {
-	display: inline-block;
 }

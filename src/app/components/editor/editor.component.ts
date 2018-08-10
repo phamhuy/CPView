@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileLoaderService } from '../../services/file-loader.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-editor',
@@ -9,18 +10,18 @@ import { FileLoaderService } from '../../services/file-loader.service';
 export class EditorComponent implements OnInit {
   menu: any;
   views: any;
+  currentView: any;
 
   constructor(private fileLoaderService: FileLoaderService) { }
 
   ngOnInit() {
     this.fileLoaderService.getConfig().subscribe(([menu, views]) => {
-      this.menu = menu;
-      this.views = views;
+      this.menu = of(menu[0].CPVIEW);
+      this.views = (views);
     });
   }
 
-  onClick() {
-    this.menu = 5;
+  onChangeView(viewtag) {
+    this.currentView = this.views[viewtag];
   }
-
 }
