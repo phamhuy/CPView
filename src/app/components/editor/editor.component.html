@@ -1,18 +1,2 @@
-<form [formGroup]="menusForm" class="center">
-  <div formArrayname="menus">
-    <div *ngFor="let menu of menus.controls; let i=index">
-      {{log(menu)}}
-      <div *ngFor="let elem of i.controls; let j=index">
-        <p>{{ j }}</p>
-      </div>
-    </div>
-  </div>
-</form>
-
-<!-- <form [formGroup]="viewsForm" class="center">
-  <div formArrayName="views">
-    <div *ngFor="let view of views.controls; let i=index">
-      <input type="text" [formControlName]="i">
-    </div>
-  </div>
-</form> -->
+<app-menu-form [menu]="menu"></app-menu-form>
+<app-view-form [views]="views"></app-view-form>

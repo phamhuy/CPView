@@ -14,6 +14,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { GatewayLoginFormComponent } from './components/gateway-login-form/gateway-login-form.component';
 import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { EditorComponent } from './components/editor/editor.component';
+import { EditorGuard } from './components/guards/editor-guard.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { EditorComponent } from './components/editor/editor.component';
     LoginFormComponent,
     GatewayLoginFormComponent,
     EditorComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { EditorComponent } from './components/editor/editor.component';
     MatTabsModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [EditorGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

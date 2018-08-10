@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FileLoaderService } from '../../services/file-loader.service';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-editor',
@@ -8,48 +7,20 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
-  menusForm: FormGroup;
-  viewsForm: FormGroup;
+  menu: any;
+  views: any;
 
-
-  constructor(
-    private fileLoader: FileLoaderService,
-    private fb: FormBuilder
-  ) { }
+  constructor(private fileLoaderService: FileLoaderService) { }
 
   ngOnInit() {
-    this.menusForm = this.fb.group({
-      menus: this.fb.array([])
-    })
-    this.viewsForm = this.fb.group({
-      views: this.fb.array([])
-    })
-    this.fileLoader.getConfig().subscribe(([menu, views]) => {
-      console.log(menu);
-      // console.log(views);
-      // for (let name in menu) {
-      //   this.menus.push(this.fb.control(menu));
-      // }
-
-      for (let view in views) {
-        this.views.push(this.fb.control(view));
-      }
-
-      // console.log(this.views);
-      // console.log(this.menu);
+    this.fileLoaderService.getConfig().subscribe(([menu, views]) => {
+      this.menu = menu;
+      this.views = views;
     });
-
   }
 
-  get menus() {
-    return this.menusForm.get('menus') as FormArray;
+  onClick() {
+    this.menu = 5;
   }
 
-  get views() {
-    return this.viewsForm.get('views') as FormArray;
-  }
-
-  log(val) {
-    console.log(val);
-  }
 }

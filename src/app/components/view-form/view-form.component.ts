@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-view-form',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view-form.component.css']
 })
 export class ViewFormComponent implements OnInit {
-
+  @Input() views: any;
   constructor() { }
 
   ngOnInit() {
