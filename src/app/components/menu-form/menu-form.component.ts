@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RandomColorService } from '../../services/random-color.service';
 
 @Component({
   selector: 'app-menu-form',
@@ -31,7 +30,15 @@ export class MenuFormComponent implements OnInit {
 
   onClick(i) {
     this.currentSelectedItem = this.menu[i];
-    this.changeView.emit('UP_stats');
+    let item = this.currentSelectedItem;
+    while (!this.isView(item)) {
+      item = this.getChildMenu(item)[0];
+    }
+    this.changeView.emit(item);
+  }
+
+  onChangeView(viewtag) {
+    this.changeView.emit(viewtag);
   }
 
   log(...args: any[]) {

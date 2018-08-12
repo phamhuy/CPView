@@ -2,5 +2,5 @@
   {{ getItemName(item) }}
 </button><br/>
 <div *ngIf="!isView(currentSelectedItem)">
-  <app-menu-form  [menu]="getChildMenu(currentSelectedItem)" [views]="views" class="text-inside-grid"></app-menu-form>
+  <app-menu-form  [menu]="getChildMenu(currentSelectedItem)" [views]="views" (changeView)="onChangeView($event)" class="text-inside-grid"></app-menu-form>
 </div>
