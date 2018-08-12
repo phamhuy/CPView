@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RandomColorService } from '../../services/random-color.service';
 
 @Component({
   selector: 'app-menu-form',
@@ -7,25 +8,29 @@ import { Observable } from 'rxjs';
   styleUrls: ['./menu-form.component.css']
 })
 export class MenuFormComponent implements OnInit {
-  @Input() menu$: Observable<any>;
-  @Input() views$: Observable<any>;
+  @Input() menu$: Observable<any> = new Observable<any>();
+  @Input() views$: Observable<any> = new Observable<any>();
+
+  @Input() menu: Array<any>;
+  @Input() views: Array<any>;
+  currentSelectedItem: any;
+
   @Output() changeView: EventEmitter<string> = new EventEmitter<string>();
 
-  menu: any;
-  views: any;
-  currentSelectedMenu: any;
-
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit() {
+    if (this.menu && this.menu.length > 0) {
+      this.currentSelectedItem = this.menu[0];
+    }
     this.menu$.subscribe(menu => {
       this.menu = menu;
-      this.currentSelectedMenu = menu[0];
+      this.currentSelectedItem = menu[0];
     });
   }
 
-  onClick() {
-    this.currentSelectedMenu = this.menu[0];
+  onClick(i) {
+    this.currentSelectedItem = this.menu[i];
     this.changeView.emit('UP_stats');
   }
 
@@ -38,12 +43,12 @@ export class MenuFormComponent implements OnInit {
     return typeof(item) == 'string'
   }
 
-  getMenuChild(item) {
+  getChildMenu(item) {
     return Object.values(item)[0];
   }
 
   getItemName(item) {
-    if (typeof(item) == 'string') {
+    if (this.isView(item)) {
       return item;
     } else {
       return Object.keys(item)[0];

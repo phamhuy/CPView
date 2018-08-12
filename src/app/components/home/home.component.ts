@@ -22,4 +22,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/editor']);
   }
 
+  onClick() {
+    this.fileLoaderService.loadFile2(localStorage.file);
+    this.router.navigate(['/editor']);
+  }
+
 }

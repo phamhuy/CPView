@@ -1,3 +1,6 @@
-<button mat-raised-button color="primary" *ngFor="let item of menu">
+<button *ngFor="let item of menu; let i = index" mat-raised-button color="primary" (click)="onClick(i)">
   {{ getItemName(item) }}
-</button>
+</button><br/>
+<div *ngIf="!isView(currentSelectedItem)">
+  <app-menu-form  [menu]="getChildMenu(currentSelectedItem)" [views]="views" class="text-inside-grid"></app-menu-form>
+</div>

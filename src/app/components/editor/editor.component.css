@@ -8,3 +8,9 @@ mat-grid-tile {
 	min-width: 150px;
 	padding: 10px;
 }
+
+.text-inside-grid {
+  position: absolute;
+  left: 5px;
+	top: 5px;
+}
