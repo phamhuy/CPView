@@ -41,7 +41,7 @@ export class FileLoaderService {
     let flattened_menu = [];
     for (let elem of menu.elements) {
       if (elem.name == 'Menu' || elem.name == 'Menus') {
-        flattened_menu.push({[elem.attributes.name]:this._flatten_menu(elem)};
+        flattened_menu.push({[elem.attributes.name]:this._flatten_menu(elem)});
       } else if (elem.name == 'View' || elem.name == 'DynamicView') {
         flattened_menu.push(elem.attributes.viewtag);
       }
