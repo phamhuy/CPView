@@ -18,13 +18,19 @@ export class HomeComponent implements OnInit {
 
   onChanged(e) {
     let file = e.target.files[0];
-    this.fileLoaderService.loadFile(file);
-    this.router.navigate(['/editor']);
+    this.fileLoaderService.loadFile(file).subscribe(isLoaded => {
+      if (isLoaded) {
+        this.router.navigate(['/editor']);
+      }
+    });
   }
 
   onClick() {
-    this.fileLoaderService.loadFile2(localStorage.file);
-    this.router.navigate(['/editor']);
+    this.fileLoaderService.loadFile2(localStorage.file).subscribe(isLoaded => {
+      if (isLoaded) {
+        this.router.navigate(['/editor']);
+      }
+    });
   }
 
 }

@@ -8,7 +8,7 @@ import { Subject, ReplaySubject, BehaviorSubject } from 'rxjs';
 export class FileLoaderService {
   fileReader: FileReader = new FileReader();
   cpview_conf$: Subject<[any, any]> = new BehaviorSubject(null);
-  isLoaded: Subject<boolean> = new ReplaySubject(1);
+  isLoaded: Subject<boolean> = new BehaviorSubject(false);
 
   constructor() {
     this.fileReader.onload = () => {
@@ -32,6 +32,8 @@ export class FileLoaderService {
 
   loadFile(file) {
     this.fileReader.readAsText(file);
+
+    return this.isLoaded;
   }
 
   loadFile2(file) {
@@ -49,6 +51,8 @@ export class FileLoaderService {
 
     this.cpview_conf$.next([menu, views]);
     this.isLoaded.next(true);
+
+    return this.isLoaded;
   }
 
   getConfig() {
