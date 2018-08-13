@@ -16,7 +16,7 @@ export class EditorComponent implements OnInit {
 
   ngOnInit() {
     this.fileLoaderService.getConfig().subscribe(([menu, views]) => {
-      this.menu = of(menu[0].CPVIEW);
+      this.menu = menu[0].CPVIEW;
       this.views = (views);
     });
   }

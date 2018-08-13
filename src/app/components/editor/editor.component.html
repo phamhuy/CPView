@@ -1,7 +1,7 @@
 <div class="center">
   <mat-grid-list cols="1" rowHeight="400">
     <mat-grid-tile>
-      <app-menu-form [menu$]="menu" [views$]="views" (changeView)="onChangeView($event)" class="text-inside-grid"></app-menu-form>
+      <app-menu-form [menu]="menu" [views]="views" (changeView)="onChangeView($event)" class="text-inside-grid"></app-menu-form>
     </mat-grid-tile>
     <mat-grid-tile>
       <app-view-form [view]="view"></app-view-form>

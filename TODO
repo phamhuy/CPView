@@ -1,0 +1,6 @@
+- Add content to view component
+- Add a new view-content component to render view component's content
+- Highlight selected menus/view
+- Add save functionality
+- Add upload from GW via ssh/scp functionality
+- Add keyboard shortcut

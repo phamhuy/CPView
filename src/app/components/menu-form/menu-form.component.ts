@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -7,25 +7,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./menu-form.component.css']
 })
 export class MenuFormComponent implements OnInit {
-  @Input() menu$: Observable<any> = new Observable<any>();
-  @Input() views$: Observable<any> = new Observable<any>();
-
   @Input() menu: Array<any>;
   @Input() views: Array<any>;
-  currentSelectedItem: any;
+  currentSelectedItem: any = null;
 
   @Output() changeView: EventEmitter<string> = new EventEmitter<string>();
 
   constructor( ) { }
 
-  ngOnInit() {
-    if (this.menu && this.menu.length > 0) {
-      this.currentSelectedItem = this.menu[0];
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      if (propName == 'menu' || propName == 'views') {
+        this.currentSelectedItem = this.menu[0];
+      }
     }
-    this.menu$.subscribe(menu => {
-      this.menu = menu;
-      this.currentSelectedItem = menu[0];
-    });
+  }
+
+  ngOnInit() {
   }
 
   onClick(i) {
