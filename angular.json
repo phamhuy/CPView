@@ -24,7 +24,7 @@
             ],
             "styles": [
               {
-                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+                "input": "src/app/app-theme.scss"
               },
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.css"

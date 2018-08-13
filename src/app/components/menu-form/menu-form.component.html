@@ -1,6 +1,8 @@
-<button *ngFor="let item of menu; let i = index" mat-raised-button color="primary" (click)="onClick(i)">
-  {{ getItemName(item) }}
-</button><br/>
+<mat-button-toggle-group name="Menu">
+  <mat-button-toggle *ngFor="let item of menu; let i = index" (click)="onClick(i)" [checked]="i == 0" [ngClass]="menu[i] == currentSelectedItem ? darkColorClass : colorClass">
+    {{ getItemName(item) }}
+  </mat-button-toggle>
+</mat-button-toggle-group>
 <div *ngIf="currentSelectedItem && !isView(currentSelectedItem)">
-  <app-menu-form  [menu]="getChildMenu(currentSelectedItem)" [views]="views" (changeView)="onChangeView($event)" class="text-inside-grid"></app-menu-form>
+  <app-menu-form  [menu]="getChildMenu(currentSelectedItem)" [views]="views" [colorNumber]="colorNumber + 1" (changeView)="onChangeView($event)" class="text-inside-grid"></app-menu-form>
 </div>

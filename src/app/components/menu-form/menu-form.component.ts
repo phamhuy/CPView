@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu-form',
@@ -9,9 +8,14 @@ import { Observable } from 'rxjs';
 export class MenuFormComponent implements OnInit {
   @Input() menu: Array<any>;
   @Input() views: Array<any>;
+  @Input() colorNumber: number;
   currentSelectedItem: any = null;
+  colorClass = {};
+  darkColorClass = {};
 
   @Output() changeView: EventEmitter<string> = new EventEmitter<string>();
+
+  static colors = ['primary', 'accent', 'warn'];
 
   constructor( ) { }
 
@@ -19,11 +23,15 @@ export class MenuFormComponent implements OnInit {
     for (let propName in changes) {
       if (propName == 'menu' || propName == 'views') {
         this.currentSelectedItem = this.menu[0];
+      } else if (propName == 'colorNumber') {
+        this.colorClass['button-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
+        this.darkColorClass['button-dark-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
       }
     }
   }
 
   ngOnInit() {
+
   }
 
   onClick(i) {
