@@ -14,6 +14,13 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if ('file' in localStorage) {
+      this.fileLoaderService.loadFile2(localStorage.file).subscribe(isLoaded => {
+        if (isLoaded) {
+          this.router.navigate(['/editor']);
+        }
+      });
+    }
   }
 
   onChanged(e) {
