@@ -10,12 +10,13 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { AppRoutingModule } from './/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTabsModule, MatProgressSpinnerModule, MatGridListModule, MatButtonToggleModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule, MatCardModule } from '@angular/material';
 import { GatewayLoginFormComponent } from './components/gateway-login-form/gateway-login-form.component';
 import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { EditorComponent } from './components/editor/editor.component';
 import { EditorGuard } from './components/guards/editor-guard.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ViewContentComponent } from './components/view-content/view-content.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     GatewayLoginFormComponent,
     EditorComponent,
     NotFoundComponent,
+    ViewContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,15 +38,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
     MatButtonModule,
-    MatSidenavModule,
     MatIconModule,
-    MatListModule,
     MatTabsModule,
-    MatProgressSpinnerModule,
-    MatGridListModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatExpansionModule,
+    MatCardModule
   ],
   providers: [EditorGuard],
   bootstrap: [AppComponent]

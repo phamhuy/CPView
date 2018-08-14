@@ -12,4 +12,8 @@ export class ViewFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges() {
+    console.log(this.view);
+  }
+
 }

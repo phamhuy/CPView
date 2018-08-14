@@ -23,6 +23,9 @@ export class MenuFormComponent implements OnInit {
     for (let propName in changes) {
       if (propName == 'menu' || propName == 'views') {
         this.currentSelectedItem = this.menu[0];
+        if (this.isView(this.currentSelectedItem)) {
+          this.changeView.emit(this.currentSelectedItem);
+        }
       } else if (propName == 'colorNumber') {
         this.colorClass['button-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
         this.darkColorClass['button-dark-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;

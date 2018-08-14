@@ -1,10 +1,18 @@
 <div class="center">
-  <mat-grid-list cols="1" rowHeight="400">
-    <mat-grid-tile>
-      <app-menu-form [menu]="menu" [views]="views" [colorNumber]="0" (changeView)="onChangeView($event)" class="text-inside-grid"></app-menu-form>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <app-view-form [view]="view"></app-view-form>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <div class="menu">
+    <mat-card [style.height.px]="400">
+      <mat-card-title>Menus</mat-card-title>
+      <mat-card-content>
+        <app-menu-form [menu]="menu" [views]="views" [colorNumber]="0" (changeView)="onChangeView($event)"></app-menu-form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="view">
+    <mat-card>
+      <mat-card-title>View</mat-card-title>
+      <mat-card-content>
+        <app-view-form [view]="currentView"></app-view-form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

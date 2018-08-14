@@ -14,3 +14,14 @@ mat-grid-tile {
   left: 5px;
 	top: 5px;
 }
+
+.menu {
+	max-width: 1500px;
+  min-width: 150px;
+  padding-bottom: 5px;
+}
+
+.view {
+	max-width: 1500px;
+	min-width: 150px;
+}
