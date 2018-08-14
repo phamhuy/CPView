@@ -16,7 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/fo
 import { EditorComponent } from './components/editor/editor.component';
 import { EditorGuard } from './components/guards/editor-guard.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ViewContentComponent } from './components/view-content/view-content.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { ViewContentComponent } from './components/view-content/view-content.com
     GatewayLoginFormComponent,
     EditorComponent,
     NotFoundComponent,
-    ViewContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +41,8 @@ import { ViewContentComponent } from './components/view-content/view-content.com
     MatTabsModule,
     MatButtonToggleModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
   ],
   providers: [EditorGuard],
   bootstrap: [AppComponent]

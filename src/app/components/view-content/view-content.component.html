@@ -1,8 +1,0 @@
-<mat-card *ngFor="let item of contentToArray()">
-  <mat-card-header>
-    <mat-card-title>{{ getType(item) }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-      <app-view-content *ngFor="let childItem of getContent(item)" [content]="childItem"></app-view-content>
-  </mat-card-content>
-</mat-card>
