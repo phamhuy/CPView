@@ -1,4 +1,5 @@
 - Add editting and adding a menu/view features.
+- Add right click to add/edit/remove a view
 - Add save functionality
 - Add keyboard shortcut
 - Add upload from GW via ssh/scp functionality

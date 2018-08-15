@@ -1,18 +1,39 @@
 <div class="center">
+  <!-- Menu card -->
   <div class="menu">
     <mat-card [style.height.px]="400">
       <mat-card-title>Menus</mat-card-title>
       <mat-card-content>
         <app-menu-form [menu]="menu" [views]="views" [colorNumber]="0" (changeView)="onChangeView($event)"></app-menu-form>
       </mat-card-content>
+
+      <!-- Add and Edit buttons -->
+      <mat-chip-list>
+        <mat-chip (click)="onEdit()">
+          <mat-icon>edit</mat-icon>
+        </mat-chip>
+        <mat-chip color="primary" selected (click)="onAdd()">
+          <mat-icon>add</mat-icon>
+        </mat-chip>
+        <mat-chip color="warn" selected (click)="onRemove()">
+          <mat-icon>remove</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
     </mat-card>
   </div>
+
+  <!-- View card -->
   <div class="view">
     <mat-card>
-      <mat-card-title>View</mat-card-title>
+      <mat-card-title>
+        View
+        <mat-chip (click)="onCollapseExpand()">
+          <mat-icon>{{ collapseExpandIcon }}</mat-icon>
+        </mat-chip>
+      </mat-card-title>
       <mat-card-content>
         <mat-accordion [multi]='true'>
-          <app-view-form [view]="currentView"></app-view-form>
+          <app-view-form [view]="currentView" [expanded]="expandAll"></app-view-form>
         </mat-accordion>
       </mat-card-content>
     </mat-card>

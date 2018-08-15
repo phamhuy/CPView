@@ -7,6 +7,7 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 })
 export class ViewFormComponent implements OnInit {
   @Input() view: any;
+  @Input() expanded: boolean;
   items: Array<any> = [];
 
   constructor() { }
@@ -20,7 +21,7 @@ export class ViewFormComponent implements OnInit {
         if (Object.keys(this.view).length < 2) {
           this.items = [this.view];
         }
-        
+
         for (let key in this.view) {
           if (key != '_attributes') {
             if (Array.isArray(this.view[key])) {

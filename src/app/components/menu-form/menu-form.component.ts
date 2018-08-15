@@ -12,6 +12,7 @@ export class MenuFormComponent implements OnInit {
   currentSelectedItem: any = null;
   colorClass = {};
   darkColorClass = {};
+  contextMenuItems = ['Edit', 'Add'];
 
   @Output() changeView: EventEmitter<string> = new EventEmitter<string>();
 
@@ -34,7 +35,6 @@ export class MenuFormComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   onClick(i) {

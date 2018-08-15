@@ -10,7 +10,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { AppRoutingModule } from './/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatButtonModule, MatIconModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule, MatCardModule, MatChipsModule } from '@angular/material';
 import { GatewayLoginFormComponent } from './components/gateway-login-form/gateway-login-form.component';
 import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { EditorComponent } from './components/editor/editor.component';
@@ -42,7 +42,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MatButtonToggleModule,
     MatExpansionModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatChipsModule
   ],
   providers: [EditorGuard],
   bootstrap: [AppComponent]
