@@ -2,19 +2,18 @@
 <mat-button-toggle-group name="Menu">
   <mat-button-toggle *ngFor="let item of menu; let i = index"
     (click)="onClick(i)"
-    ng-right-click menu-items="contextMenuItems"
     [checked]="i == 0"
-    [ngClass]="menu[i] == currentSelectedItem ? darkColorClass : colorClass">
+    [ngClass]="i == curSelectedIndex ? darkColorClass : colorClass">
       {{ getItemName(item) }}
   </mat-button-toggle>
 </mat-button-toggle-group>
 
 <!-- Sub-menu items -->
-<div *ngIf="currentSelectedItem && !isView(currentSelectedItem)">
+<div *ngIf="menu[curSelectedIndex] && !isView(menu[curSelectedIndex])">
   <app-menu-form
-    [menu]="getChildMenu(currentSelectedItem)"
+    [menu]="getChildMenu(menu[curSelectedIndex])"
     [colorNumber]="colorNumber + 1"
-    (changeView)="onChangeView($event)"
+    (changeSelectedItem)="onChangeSelectedItem($event)"
     class="text-inside-grid">
   </app-menu-form>
 </div>

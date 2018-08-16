@@ -8,28 +8,33 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@
 export class MenuComponent implements OnInit {
 	@Input() menu: Array<any>;
 	@Output() changeView: EventEmitter<string> = new EventEmitter<string>();
-	currentSelectedItem: any = null;
+
+	selectedMenuComponent: any;
 
 	constructor() { }
 
 	isView(item) {
-		return typeof(item) == 'string';
+		return item.name == 'View' || item.name == 'DynamicView';
 	}
 
 	ngOnChanges() {
-		this.currentSelectedItem = this.menu[0];
-    let item = this.currentSelectedItem;
+    let item = this.menu[0];
     while (!this.isView(item)) {
       item = Object.values(item)[0];
     }
-    this.changeView.emit(item);
+    this.changeView.emit(item.attributes.viewtag);
   }
 
   ngOnInit() {
 	}
 
-	onChangeView(viewtag) {
-    this.changeView.emit(viewtag);
+	onChangeSelectedItem(menuComponent) {
+		this.selectedMenuComponent = menuComponent;
+		let item = this.menu[menuComponent.curSelectedIndex];
+    while (!this.isView(item)) {
+      item = item.elements[0];
+		}
+    this.changeView.emit(item.attributes.viewtag);
   }
 
 	onEdit() {
@@ -41,7 +46,9 @@ export class MenuComponent implements OnInit {
   }
 
   onRemove() {
-    console.log('onRemove');
+		let menu = this.selectedMenuComponent.menu;
+		menu.splice(this.selectedMenuComponent.curSelectedIndex, 1);
+		this.selectedMenuComponent.curSelectedIndex %= menu.length;
   }
 
 }

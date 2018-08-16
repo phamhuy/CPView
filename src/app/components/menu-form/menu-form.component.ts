@@ -8,12 +8,12 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@
 export class MenuFormComponent implements OnInit {
   @Input() menu: Array<any>;
   @Input() colorNumber: number;
-  currentSelectedItem: any = null;
+  curSelectedIndex: any = null;
   colorClass = {};
   darkColorClass = {};
   contextMenuItems = ['Edit', 'Add'];
 
-  @Output() changeView: EventEmitter<string> = new EventEmitter<string>();
+  @Output() changeSelectedItem: EventEmitter<any> = new EventEmitter<any>();
 
   static colors = ['primary', 'accent', 'warn'];
 
@@ -22,7 +22,7 @@ export class MenuFormComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     for (let propName in changes) {
       if (propName == 'menu') {
-        this.currentSelectedItem = this.menu[0];
+        this.curSelectedIndex = 0;
       } else if (propName == 'colorNumber') {
         this.colorClass['button-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
         this.darkColorClass['button-dark-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
@@ -34,16 +34,12 @@ export class MenuFormComponent implements OnInit {
   }
 
   onClick(i) {
-    this.currentSelectedItem = this.menu[i];
-    let item = this.currentSelectedItem;
-    while (!this.isView(item)) {
-      item = this.getChildMenu(item)[0];
-    }
-		this.changeView.emit(item);
+    this.curSelectedIndex = i;
+		this.changeSelectedItem.emit(this);
   }
 
-  onChangeView(viewtag) {
-    this.changeView.emit(viewtag);
+  onChangeSelectedItem(item) {
+    this.changeSelectedItem.emit(item);
   }
 
   log(...args: any[]) {
@@ -52,19 +48,15 @@ export class MenuFormComponent implements OnInit {
   }
 
   isView(item) {
-    return typeof(item) == 'string'
+    return item.name == 'View' || item.name == 'DynamicView';
   }
 
   getChildMenu(item) {
-    return Object.values(item)[0];
+    return item.elements;
   }
 
   getItemName(item) {
-    if (this.isView(item)) {
-      return item;
-    } else {
-      return Object.keys(item)[0];
-    }
+		return this.isView(item) ? item.attributes.viewtag : item.attributes.name;
   }
 
 }
