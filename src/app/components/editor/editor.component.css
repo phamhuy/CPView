@@ -1,34 +1,6 @@
-mat-grid-tile {
-	background: lightblue;
-}
-
 .center {
 	margin: auto;
 	max-width: 1500px;
 	min-width: 150px;
 	padding: 10px;
-}
-
-.menu {
-	max-width: 1500px;
-  min-width: 150px;
-  padding-bottom: 5px;
-}
-
-.view {
-	max-width: 1500px;
-	min-width: 150px;
-}
-
-.mat-card{
-	display: flex;
-	flex-direction: column;
-}
-
-.mat-card-content{
-	flex-grow: 1;
-}
-
-.mat-chip {
-	cursor: pointer;
 }

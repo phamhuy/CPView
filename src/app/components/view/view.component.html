@@ -1,0 +1,15 @@
+<div class="view">
+	<mat-card>
+		<mat-card-title>
+			View
+			<mat-chip (click)="onCollapseExpand()">
+				<mat-icon>{{ collapseExpandIcon }}</mat-icon>
+			</mat-chip>
+		</mat-card-title>
+		<mat-card-content>
+			<mat-accordion [multi]='true'>
+				<app-view-form [view]="view" [expanded]="expandAll"></app-view-form>
+			</mat-accordion>
+		</mat-card-content>
+	</mat-card>
+</div>

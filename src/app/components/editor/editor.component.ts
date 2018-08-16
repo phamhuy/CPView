@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileLoaderService } from '../../services/file-loader.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-editor',
@@ -10,39 +11,20 @@ export class EditorComponent implements OnInit {
   menu: any;
   views: any;
   currentView: any;
-  expandAll: boolean = true;
-  collapseExpandIcon: string = 'remove';
 
   constructor(
-    private fileLoaderService: FileLoaderService
+		private fileLoaderService: FileLoaderService
   ) { }
 
   ngOnInit() {
     this.fileLoaderService.getConfig().subscribe(([menu, views]) => {
       this.menu = menu[0].CPVIEW;
-      this.views = (views);
+			this.views = views;
     });
   }
 
   onChangeView(viewtag) {
     this.currentView = this.views[viewtag];
-  }
-
-  onEdit() {
-    console.log('onEdit');
-  }
-
-  onAdd() {
-    console.log('onAdd');
-  }
-
-  onRemove() {
-    console.log('onRemove');
-  }
-
-  onCollapseExpand() {
-    this.expandAll = !this.expandAll;
-    this.collapseExpandIcon = (this.expandAll ? 'remove' : 'add');
   }
 
 }

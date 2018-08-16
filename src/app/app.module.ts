@@ -16,6 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/fo
 import { EditorComponent } from './components/editor/editor.component';
 import { EditorGuard } from './components/guards/editor-guard.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ViewComponent } from './components/view/view.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     GatewayLoginFormComponent,
     EditorComponent,
     NotFoundComponent,
+    MenuComponent,
+    ViewComponent,
   ],
   imports: [
     BrowserModule,

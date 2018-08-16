@@ -13,7 +13,7 @@
 <div *ngIf="currentSelectedItem && !isView(currentSelectedItem)">
   <app-menu-form
     [menu]="getChildMenu(currentSelectedItem)"
-    [views]="views" [colorNumber]="colorNumber + 1"
+    [colorNumber]="colorNumber + 1"
     (changeView)="onChangeView($event)"
     class="text-inside-grid">
   </app-menu-form>

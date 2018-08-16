@@ -7,7 +7,6 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@
 })
 export class MenuFormComponent implements OnInit {
   @Input() menu: Array<any>;
-  @Input() views: Array<any>;
   @Input() colorNumber: number;
   currentSelectedItem: any = null;
   colorClass = {};
@@ -22,11 +21,8 @@ export class MenuFormComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     for (let propName in changes) {
-      if (propName == 'menu' || propName == 'views') {
+      if (propName == 'menu') {
         this.currentSelectedItem = this.menu[0];
-        if (this.isView(this.currentSelectedItem)) {
-          this.changeView.emit(this.currentSelectedItem);
-        }
       } else if (propName == 'colorNumber') {
         this.colorClass['button-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
         this.darkColorClass['button-dark-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
@@ -43,7 +39,7 @@ export class MenuFormComponent implements OnInit {
     while (!this.isView(item)) {
       item = this.getChildMenu(item)[0];
     }
-    this.changeView.emit(item);
+		this.changeView.emit(item);
   }
 
   onChangeView(viewtag) {

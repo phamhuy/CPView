@@ -1,0 +1,17 @@
+.view {
+	max-width: 1500px;
+	min-width: 150px;
+}
+
+.mat-card{
+	display: flex;
+	flex-direction: column;
+}
+
+.mat-card-content{
+	flex-grow: 1;
+}
+
+.mat-chip {
+	cursor: pointer;
+}

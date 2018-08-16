@@ -1,0 +1,21 @@
+<div class="menu">
+	<mat-card [style.height.px]="400">
+		<mat-card-title>Menus</mat-card-title>
+		<mat-card-content>
+			<app-menu-form [menu]="menu" [colorNumber]="0" (changeView)="onChangeView($event)"></app-menu-form>
+		</mat-card-content>
+
+		<!-- Add/Edit/Remove buttons -->
+		<mat-chip-list>
+			<mat-chip (click)="onEdit()">
+				<mat-icon>edit</mat-icon>
+			</mat-chip>
+			<mat-chip color="primary" selected (click)="onAdd()">
+				<mat-icon>add</mat-icon>
+			</mat-chip>
+			<mat-chip color="warn" selected (click)="onRemove()">
+				<mat-icon>remove</mat-icon>
+			</mat-chip>
+		</mat-chip-list>
+	</mat-card>
+</div>
