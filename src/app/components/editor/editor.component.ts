@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FileLoaderService } from '../../services/file-loader.service';
-import { saveAs } from 'file-saver';
+import { FileService } from '../../services/file.service';
+import { FileSaver } from 'file-saver';
 
 @Component({
   selector: 'app-editor',
@@ -13,12 +13,12 @@ export class EditorComponent implements OnInit {
   currentView: any;
 
   constructor(
-		private fileLoaderService: FileLoaderService
+		private fileService: FileService
   ) { }
 
   ngOnInit() {
-    this.fileLoaderService.getConfig().subscribe(([menu, views]) => {
-      this.menu = menu[0].CPVIEW;
+    this.fileService.getConfig().subscribe(([menu, views]) => {
+      this.menu = menu;
 			this.views = views;
     });
   }

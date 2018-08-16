@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-view-form',
@@ -15,29 +15,34 @@ export class ViewFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    for (let propName in changes) {
-      if (propName == 'view') {
-        if (Object.keys(this.view).length < 2) {
-          this.items = [this.view];
-        }
+  ngOnChanges() {
+    if (Object.keys(this.view).length < 2) {
+      this.items = [this.view];
+    }
 
-				this.items = [];
-        for (let key in this.view) {
-          if (key != '_attributes') {
-            if (Array.isArray(this.view[key])) {
-              for (let value of this.view[key]) {
-                let item = {}; item[key] = value;
-                this.items.push(item);
-              }
-            } else {
-              let item = {}; item[key] = this.view[key];
-              this.items.push(item);
-            }
+    this.items = [];
+    for (let key in this.view) {
+      if (key != '_attributes') {
+        if (Array.isArray(this.view[key])) {
+          for (let value of this.view[key]) {
+            let item = {}; item[key] = value;
+            this.items.push(item);
           }
+        } else {
+          let item = {}; item[key] = this.view[key];
+          this.items.push(item);
         }
       }
     }
+  }
+
+  getAttributes() {
+    let attributes = '';
+    for (let propName in this.view.attributes) {
+      attributes += propName + '="' + this.view.attributes[propName] + '"';
+    }
+
+    return attributes;
   }
 
   getType(item) {
@@ -57,8 +62,8 @@ export class ViewFormComponent implements OnInit {
     return content;
   }
 
-  isLeaf(item) {
-    return Object.keys(Object.values(item)[0]).length < 2;
+  isLeaf() {
+    return !('elements' in this.view);
   }
 
   log(...args: any[]) {

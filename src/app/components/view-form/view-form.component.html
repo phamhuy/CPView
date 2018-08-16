@@ -1,13 +1,13 @@
-<mat-expansion-panel *ngFor="let item of items" [hideToggle]="isLeaf(item)" [expanded]="expanded && !isLeaf(item)">
+<mat-expansion-panel [expanded]="expanded" [hideToggle]="isLeaf()">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      {{getType(item)}}
+      {{ view.name }}
     </mat-panel-title>
     <mat-panel-description>
-      {{getContent(item)}}
+      {{ getAttributes() }}
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <ng-template matExpansionPanelContent>
-    <app-view-form *ngIf="!isLeaf(item)" [view]="getChildren(item)" [expanded]="expanded"></app-view-form>
+  <ng-template matExpansionPanelContent *ngIf="!isLeaf()">
+    <app-view-form *ngFor="let item of view.elements" [view]="item" [expanded]="expanded"></app-view-form>
   </ng-template>
 </mat-expansion-panel>

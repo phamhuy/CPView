@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FileLoaderService } from '../../services/file-loader.service';
+import { FileService } from '../../services/file.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private fileLoaderService : FileLoaderService,
+    private fileService : FileService,
     private router: Router
   ) { }
 
   ngOnInit() {
     if ('file' in localStorage) {
-      this.fileLoaderService.loadFile2(localStorage.file).subscribe(isLoaded => {
+      this.fileService.loadFile2(localStorage.file).subscribe(isLoaded => {
         if (isLoaded) {
           this.router.navigate(['/editor']);
         }
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   onChanged(e) {
     let file = e.target.files[0];
-    this.fileLoaderService.loadFile(file).subscribe(isLoaded => {
+    this.fileService.loadFile(file).subscribe(isLoaded => {
       if (isLoaded) {
         this.router.navigate(['/editor']);
       }
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   onClick() {
-    this.fileLoaderService.loadFile2(localStorage.file).subscribe(isLoaded => {
+    this.fileService.loadFile2(localStorage.file).subscribe(isLoaded => {
       if (isLoaded) {
         this.router.navigate(['/editor']);
       }

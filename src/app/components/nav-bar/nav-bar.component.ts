@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FileLoaderService } from '../../services/file-loader.service';
+import { FileService } from '../../services/file.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,10 +10,10 @@ import { Observable } from 'rxjs';
 export class NavBarComponent implements OnInit {
   isLoaded$: Observable<boolean>;
 
-  constructor(private fileLoaderService: FileLoaderService) { }
+  constructor(private fileService: FileService) { }
 
   ngOnInit() {
-    this.isLoaded$ = this.fileLoaderService.isLoaded;
+    this.isLoaded$ = this.fileService.isLoaded;
   }
 
 }
