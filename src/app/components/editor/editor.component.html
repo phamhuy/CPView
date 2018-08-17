@@ -1,5 +1,7 @@
 <div class="center">
-	<button mat-raised-button color="primary" (click)="onClickSave()">Save</button>
+	<div style="padding-bottom:5px; overflow: hidden;">
+		<button mat-raised-button color="primary" (click)="onClickSave()" style="float: right;">Save</button>
+	</div>
   <app-menu [menu]="menu" (changeView)="onChangeView($event)"></app-menu>
 	<app-view [view]="currentView"></app-view>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { RemoveDialogComponent } from '../remove-dialog/remove-dialog.component';
 
 @Component({
   selector: 'app-menu',
@@ -51,10 +52,13 @@ export class MenuComponent implements OnInit {
       // Extract data from currently selected item
       let menu = this.selectedMenuComponent.menu;
       let index = this.selectedMenuComponent.curSelectedIndex;
-      let item = menu[index];
+      let data = {
+				type: menu[index].name,
+				attributes: menu[index].attributes
+			};
 
       // Open a remove confirmation dialog
-      const dialogRef = this.dialog.open(RemoveMenuDialog, {data: item});
+      const dialogRef = this.dialog.open(RemoveDialogComponent, {data: data});
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
@@ -62,30 +66,6 @@ export class MenuComponent implements OnInit {
           this.selectedMenuComponent.curSelectedIndex %= menu.length;
         }});
     }
-  }
-
-}
-
-@Component({
-  selector: 'remove-menu-dialog',
-  templateUrl: 'remove-menu-dialog.html'
-})
-export class RemoveMenuDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<RemoveMenuDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  onCancelClick() {
-    this.dialogRef.close();
-  }
-
-  getItemType() {
-    return this.data.name;
-  }
-
-  getItemName() {
-    return this.data.name == 'Menu' ? this.data.attributes.name : this.data.attributes.viewtag;
   }
 
 }

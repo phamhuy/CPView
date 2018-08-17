@@ -16,8 +16,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorComponent } from './components/editor/editor.component';
 import { EditorGuard } from './components/guards/editor-guard.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { MenuComponent, RemoveMenuDialog } from './components/menu/menu.component';
+import { MenuComponent } from './components/menu/menu.component';
 import { ViewComponent } from './components/view/view.component';
+import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
+import { RemoveDialogComponent } from './components/remove-dialog/remove-dialog.component';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { ViewComponent } from './components/view/view.component';
     NotFoundComponent,
     MenuComponent,
     ViewComponent,
-    RemoveMenuDialog
+    AddDialogComponent,
+    RemoveDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,11 +56,12 @@ import { ViewComponent } from './components/view/view.component';
     MatChipsModule,
     MatDialogModule
   ],
-  entryComponents: [RemoveMenuDialog],
-  providers: [
-    EditorGuard,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
-  ],
+  entryComponents: [
+		AddDialogComponent,
+		RemoveDialogComponent,
+		EditDialogComponent
+	],
+  providers: [EditorGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
