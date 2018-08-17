@@ -39,7 +39,7 @@ export class ViewFormComponent implements OnInit {
   getAttributes() {
     let attributes = '';
     for (let propName in this.view.attributes) {
-      attributes += propName + '="' + this.view.attributes[propName] + '"';
+      attributes += propName + '="' + this.view.attributes[propName] + '" ';
     }
 
     return attributes;

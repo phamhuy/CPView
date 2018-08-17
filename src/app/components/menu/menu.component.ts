@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
 	ngOnChanges() {
     let item = this.menu[0];
     while (!this.isView(item)) {
-      item = Object.values(item)[0];
+      item = item.elements[0];
     }
     this.changeView.emit(item.attributes.viewtag);
   }
@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit {
 
 	onChangeSelectedItem(menuComponent) {
 		this.selectedMenuComponent = menuComponent;
-		let item = this.menu[menuComponent.curSelectedIndex];
+		let item = menuComponent.menu[menuComponent.curSelectedIndex];
     while (!this.isView(item)) {
       item = item.elements[0];
 		}

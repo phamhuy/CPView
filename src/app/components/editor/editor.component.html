@@ -1,4 +1,5 @@
 <div class="center">
+	<button mat-raised-button color="primary" (click)="onClickSave()">Save</button>
   <app-menu [menu]="menu" (changeView)="onChangeView($event)"></app-menu>
 	<app-view [view]="currentView"></app-view>
 </div>
