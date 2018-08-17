@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-menu',
@@ -11,7 +12,7 @@ export class MenuComponent implements OnInit {
 
 	selectedMenuComponent: any;
 
-	constructor() { }
+	constructor(public dialog: MatDialog) { }
 
 	isView(item) {
 		return item.name == 'View' || item.name == 'DynamicView';
@@ -46,9 +47,45 @@ export class MenuComponent implements OnInit {
   }
 
   onRemove() {
-		let menu = this.selectedMenuComponent.menu;
-		menu.splice(this.selectedMenuComponent.curSelectedIndex, 1);
-		this.selectedMenuComponent.curSelectedIndex %= menu.length;
+    if (this.selectedMenuComponent) {
+      // Extract data from currently selected item
+      let menu = this.selectedMenuComponent.menu;
+      let index = this.selectedMenuComponent.curSelectedIndex;
+      let item = menu[index];
+
+      // Open a remove confirmation dialog
+      const dialogRef = this.dialog.open(RemoveMenuDialog, {data: item});
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          menu.splice(index, 1);
+          this.selectedMenuComponent.curSelectedIndex %= menu.length;
+        }});
+    }
+  }
+
+}
+
+@Component({
+  selector: 'remove-menu-dialog',
+  templateUrl: 'remove-menu-dialog.html'
+})
+export class RemoveMenuDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<RemoveMenuDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onCancelClick() {
+    this.dialogRef.close();
+  }
+
+  getItemType() {
+    return this.data.name;
+  }
+
+  getItemName() {
+    return this.data.name == 'Menu' ? this.data.attributes.name : this.data.attributes.viewtag;
   }
 
 }

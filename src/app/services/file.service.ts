@@ -19,9 +19,6 @@ export class FileService {
 			let menu = this.config.elements[0].elements[0].elements;
 			let views = this.config.elements[0].elements[1].elements;
 
-			// Convert views into a dictionary with viewtag as key
-			views = this._flatten_views(views);
-
 			this.cpview_conf$.next([menu, views]);
 			this.isLoaded.next(true);
 		}

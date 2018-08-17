@@ -10,13 +10,13 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatButtonModule, MatIconModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule, MatCardModule, MatChipsModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule, MatCardModule, MatChipsModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
 import { GatewayLoginFormComponent } from './components/gateway-login-form/gateway-login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorComponent } from './components/editor/editor.component';
 import { EditorGuard } from './components/guards/editor-guard.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { MenuComponent } from './components/menu/menu.component';
+import { MenuComponent, RemoveMenuDialog } from './components/menu/menu.component';
 import { ViewComponent } from './components/view/view.component';
 
 @NgModule({
@@ -32,6 +32,7 @@ import { ViewComponent } from './components/view/view.component';
     NotFoundComponent,
     MenuComponent,
     ViewComponent,
+    RemoveMenuDialog
   ],
   imports: [
     BrowserModule,
@@ -47,9 +48,14 @@ import { ViewComponent } from './components/view/view.component';
     MatExpansionModule,
     MatCardModule,
     MatExpansionModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
   ],
-  providers: [EditorGuard],
+  entryComponents: [RemoveMenuDialog],
+  providers: [
+    EditorGuard,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
