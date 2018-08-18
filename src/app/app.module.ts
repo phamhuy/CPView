@@ -10,7 +10,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatButtonModule, MatIconModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule, MatCardModule, MatChipsModule, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatTabsModule, MatButtonToggleModule, MatExpansionModule, MatCardModule, MatChipsModule, MatDialogModule, MatSelectModule, MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { GatewayLoginFormComponent } from './components/gateway-login-form/gateway-login-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorComponent } from './components/editor/editor.component';
@@ -54,7 +54,11 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
     MatCardModule,
     MatExpansionModule,
     MatChipsModule,
-    MatDialogModule
+		MatDialogModule,
+		MatSelectModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatCheckboxModule
   ],
   entryComponents: [
 		AddDialogComponent,
