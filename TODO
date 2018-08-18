@@ -1,6 +1,4 @@
-- Remove feature: when remove menu, review all coressponding views
-- Add editting and adding a menu/view features.
+- Add editting a menu/view features.
 - Add right click to add/edit/remove a view
-- Add save functionality
+- Add form validation to dialogs
 - Add keyboard shortcut
-- Add upload from GW via ssh/scp functionality

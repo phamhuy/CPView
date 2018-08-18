@@ -1,3 +1,26 @@
-<p>
-  edit-dialog works!
-</p>
+<h1 mat-dialog-title>Edit Dialog</h1>
+<div mat-dialog-content>
+	<mat-form-field appearance="standard">
+		<mat-select [(value)]="result.name">
+			<mat-option *ngFor="let tag of data.tags" [value]="tag">{{ tag }}</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<div *ngFor="let attr of attributes; let i=index">
+		<mat-form-field appearance="standard">
+			<mat-label>Property Name</mat-label>
+			<input matInput [(ngModel)]="attr[0]" cdkFocusInitial>
+		</mat-form-field>=
+		<mat-form-field appearance="standard">
+			<mat-label>Value</mat-label>
+			<input matInput [(ngModel)]="attr[1]">
+    </mat-form-field>
+    <mat-icon (click)="onRemoveAttr(i)">remove_circle_outline</mat-icon>
+	</div>
+	<div>
+		<mat-icon (click)="onAddAttr()" >add</mat-icon>
+	</div>
+</div>
+<div mat-dialog-actions>
+	<button mat-raised-button color="primary" (click)="updateAttributes()" [mat-dialog-close]="result">Save</button>
+	<button mat-raised-button (click)="onCancelClick()">Cancel</button>
+</div>

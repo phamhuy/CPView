@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { RemoveDialogComponent } from '../remove-dialog/remove-dialog.component';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
 import { MenuFormComponent } from '../menu-form/menu-form.component';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
 	selector: 'app-menu',
@@ -49,7 +50,35 @@ export class MenuComponent implements OnInit {
 	}
 
 	onEdit() {
-		console.log('onEdit');
+		// Extract data from currently selected item
+		let menu = this.selectedMenuComponent.menu;
+		let index = this.selectedMenuComponent.curSelectedIndex;
+		let item = menu[index];
+		let prevName = item.name;
+
+		// Open an edit dialog
+		const dialogRef = this.dialog.open(EditDialogComponent, {
+			data: {
+				name: item.name,
+				attributes: item.attributes,
+				tags: ['Menu', 'View', 'Dynamic']
+			}
+		});
+		dialogRef.afterClosed().subscribe(result => {
+			if (result) {
+				for (let propName in result) {
+					item[propName] = result[propName];
+				}
+
+				if (item.name != prevName) {
+					if (item.name == 'Menu') {
+						item['elements'] = [];
+					} else {
+						delete item.elements;
+					}
+				}
+			}
+		});
 	}
 
 	onAdd() {
