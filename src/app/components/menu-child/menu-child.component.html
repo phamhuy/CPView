@@ -10,10 +10,10 @@
 
 <!-- Sub-menu items -->
 <div *ngIf="menu[curSelectedIndex] && !isView(menu[curSelectedIndex])">
-  <app-menu-form
+  <app-menu-child
     [menu]="getChildMenu(menu[curSelectedIndex])"
     [colorNumber]="colorNumber + 1"
     (changeSelectedItem)="onChangeSelectedItem($event)"
     class="text-inside-grid">
-  </app-menu-form>
+  </app-menu-child>
 </div>

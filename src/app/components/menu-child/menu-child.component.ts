@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-menu-form',
-  templateUrl: './menu-form.component.html',
-  styleUrls: ['./menu-form.component.css']
+  selector: 'app-menu-child',
+  templateUrl: './menu-child.component.html',
+  styleUrls: ['./menu-child.component.css']
 })
-export class MenuFormComponent implements OnInit {
+export class MenuChildComponent implements OnInit {
   @Input() menu: Array<any>;
   @Input() colorNumber: number;
   curSelectedIndex: any = null;
@@ -24,8 +24,8 @@ export class MenuFormComponent implements OnInit {
       if (propName == 'menu') {
         this.curSelectedIndex = 0;
       } else if (propName == 'colorNumber') {
-        this.colorClass['button-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
-        this.darkColorClass['button-dark-' + MenuFormComponent.colors[this.colorNumber % MenuFormComponent.colors.length]] = true;
+        this.colorClass['button-' + MenuChildComponent.colors[this.colorNumber % MenuChildComponent.colors.length]] = true;
+        this.darkColorClass['button-dark-' + MenuChildComponent.colors[this.colorNumber % MenuChildComponent.colors.length]] = true;
       }
     }
   }

@@ -2,7 +2,7 @@
 	<mat-card [style.height.px]="400">
 		<mat-card-title>Menus</mat-card-title>
 		<mat-card-content>
-			<app-menu-form [menu]="menu" [colorNumber]="0" (changeSelectedItem)="onChangeSelectedItem($event)"></app-menu-form>
+			<app-menu-child [menu]="menu" [colorNumber]="0" (changeSelectedItem)="onChangeSelectedItem($event)"></app-menu-child>
 		</mat-card-content>
 
 		<!-- Add/Edit/Remove buttons -->

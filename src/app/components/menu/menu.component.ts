@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, Inject, 
 import { MatDialog } from '@angular/material';
 import { RemoveDialogComponent } from '../remove-dialog/remove-dialog.component';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
-import { MenuFormComponent } from '../menu-form/menu-form.component';
+import { MenuChildComponent } from '../menu-child/menu-child.component';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 	styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-	@ViewChild(MenuFormComponent) menuComponent !: MenuFormComponent
+	@ViewChild(MenuChildComponent) menuComponent !: MenuChildComponent
 	@Input() menu: Array<any>;
 	@Output() changeView: EventEmitter<string> = new EventEmitter<string>();
 

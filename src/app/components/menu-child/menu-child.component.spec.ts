@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewFormComponent } from './view-form.component';
+import { MenuChildComponent } from './menu-child.component';
 
-describe('ViewFormComponent', () => {
-  let component: ViewFormComponent;
-  let fixture: ComponentFixture<ViewFormComponent>;
+describe('MenuChildComponent', () => {
+  let component: MenuChildComponent;
+  let fixture: ComponentFixture<MenuChildComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewFormComponent ]
+      declarations: [ MenuChildComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewFormComponent);
+    fixture = TestBed.createComponent(MenuChildComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

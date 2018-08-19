@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { MenuFormComponent } from './components/menu-form/menu-form.component';
-import { ViewFormComponent } from './components/view-form/view-form.component';
+import { MenuChildComponent } from './components/menu-child/menu-child.component';
+import { ViewChildComponent } from './components/view-child/view-child.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,8 +27,8 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
     AppComponent,
     HomeComponent,
     NavBarComponent,
-    MenuFormComponent,
-    ViewFormComponent,
+    MenuChildComponent,
+    ViewChildComponent,
     LoginFormComponent,
     GatewayLoginFormComponent,
     EditorComponent,
