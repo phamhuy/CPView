@@ -1,17 +1,29 @@
 <div class="view">
 	<mat-card>
-		<span>
-			<mat-card-title>View</mat-card-title>
-			<mat-card-subtitle>
-				<mat-form-field *ngFor="let propName of getAttributes()">
-					<mat-label>{{ propName }}</mat-label>
-					<input matInput [(ngModel)]="curView.attributes[propName]">
-				</mat-form-field>
-			</mat-card-subtitle>
-			<mat-icon (click)="onAddAttr()">add_circle_outline</mat-icon>
-			<mat-icon (click)="onRemove()">remove_circle_outline</mat-icon>
-		</span>
-		<mat-card-content>
+		<mat-card-title>
+			View
+			<span *ngIf="curView">
+				<mat-card-subtitle>
+					<mat-form-field *ngFor="let propName of getAttributes()">
+						<mat-label>{{ propName }}</mat-label>
+						<input matInput [(ngModel)]="curView.attributes[propName]">
+					</mat-form-field>
+				</mat-card-subtitle>
+				<mat-icon (click)="onEdit()">edit_attributes</mat-icon>
+				<mat-icon (click)="onAdd()">add_circle_outline</mat-icon>
+			</span>
+			<span>
+				<mat-chip-list style="float: right;">
+					<mat-chip *ngIf="curView" color="warn" selected (click)="onRemove()">
+						<mat-icon>remove</mat-icon>
+					</mat-chip>
+					<mat-chip color="primary" selected (click)="onAddView()">
+						<mat-icon>add</mat-icon>
+					</mat-chip>
+				</mat-chip-list>
+			</span>
+		</mat-card-title>
+		<mat-card-content *ngIf="curView">
 			<app-view-child [view]="curView"></app-view-child>
 		</mat-card-content>
 	</mat-card>

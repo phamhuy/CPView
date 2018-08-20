@@ -1,7 +1,7 @@
-<h1 mat-dialog-title>Edit Dialog</h1>
+<h1 mat-dialog-title>{{ data.title }}</h1>
 <div mat-dialog-content>
 	<mat-form-field appearance="standard">
-		<mat-select [(value)]="result.name">
+		<mat-select [(value)]="name"  [disabled]="data.tags.length == 1">
 			<mat-option *ngFor="let tag of data.tags" [value]="tag">{{ tag }}</mat-option>
 		</mat-select>
 	</mat-form-field>
@@ -21,6 +21,6 @@
 	</div>
 </div>
 <div mat-dialog-actions>
-	<button mat-raised-button color="primary" (click)="updateAttributes()" [mat-dialog-close]="result">Save</button>
+	<button mat-raised-button color="primary" (click)="onSave()" [mat-dialog-close]="true">Save</button>
 	<button mat-raised-button (click)="onCancelClick()">Cancel</button>
 </div>

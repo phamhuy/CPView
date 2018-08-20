@@ -54,28 +54,19 @@ export class MenuComponent implements OnInit {
 		let menu = this.selectedMenuComponent.menu;
 		let index = this.selectedMenuComponent.curSelectedIndex;
 		let item = menu[index];
-		let prevName = item.name;
 
 		// Open an edit dialog
 		const dialogRef = this.dialog.open(EditDialogComponent, {
 			data: {
-				name: item.name,
-				attributes: item.attributes,
-				tags: ['Menu', 'View', 'Dynamic']
+				title: 'Edit',
+				item: item,
+				tags: ['Menu', 'View', 'DynamicView']
 			}
 		});
 		dialogRef.afterClosed().subscribe(result => {
 			if (result) {
-				for (let propName in result) {
-					item[propName] = result[propName];
-				}
-
-				if (item.name != prevName) {
-					if (item.name == 'Menu') {
-						item['elements'] = [];
-					} else {
-						delete item.elements;
-					}
+				if (item.name == 'View') {
+					delete item.elements;
 				}
 			}
 		});
@@ -95,6 +86,9 @@ export class MenuComponent implements OnInit {
 		});
 		dialogRef.afterClosed().subscribe(result => {
 			if (result) {
+				if (result.newItem.name == 'View') {
+					delete result.newItem.elements;
+				}
 				if (result.asChild) {
 					menu[index].elements.push(result.newItem);
 				} else {

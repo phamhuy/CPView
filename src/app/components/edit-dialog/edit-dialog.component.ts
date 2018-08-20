@@ -7,27 +7,28 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./edit-dialog.component.css']
 })
 export class EditDialogComponent implements OnInit {
-  result: any = {};
+	name: string;
   attributes = [];
 
   constructor(public dialogRef: MatDialogRef<EditDialogComponent>,
 		@Inject(MAT_DIALOG_DATA) public data: {
-      name: string,
-      attributes: any,
+			title: string,
+      item: any,
       tags: string[],
     }) { }
 
   ngOnInit() {
-    this.result['name'] = this.data.name;
-    for (let propName in this.data.attributes) {
-      this.attributes.push([propName, this.data.attributes[propName]]);
+		this.name = this.data.item.name;
+    for (let propName in this.data.item.attributes) {
+      this.attributes.push([propName, this.data.item.attributes[propName]]);
     }
   }
 
-  updateAttributes() {
-    this.result['attributes'] = {};
+  onSave() {
+		this.data.item.name = this.name;
+    this.data.item.attributes = {};
 		for (let attr of this.attributes) {
-			this.result.attributes[attr[0]] = attr[1];
+			this.data.item.attributes[attr[0]] = attr[1];
     }
   }
 
@@ -46,9 +47,13 @@ export class EditDialogComponent implements OnInit {
 	@HostListener('keyup', ['$event.key'])
 	onkeyup(key) {
 		if (key == 'Enter') {
-			this.updateAttributes();
-			this.dialogRef.close(this.result);
+			this.onSave();
+			this.dialogRef.close(true);
 		}
+	}
+
+	log(e) {
+		console.log(e);
 	}
 
 }

@@ -1,12 +1,12 @@
 <h1 mat-dialog-title>Add an Item</h1>
 <div mat-dialog-content>
 	<mat-form-field appearance="standard">
-		<mat-select [(value)]="result.newItem.name" (selectionChange)="onTagChange()">
+		<mat-select [(value)]="result.newItem.name" [disabled]="data.tags.length == 1">
 			<mat-option *ngFor="let tag of data.tags" [value]="tag">{{ tag }}</mat-option>
 		</mat-select>
 	</mat-form-field>
-	<mat-checkbox (change)="onCheckboxToggle()" [disabled]="data.asChildDisable">As Child</mat-checkbox>
-	<div *ngFor="let attr of attributes">
+	<mat-checkbox [checked]="result.asChild" (change)="onCheckboxToggle()" [disabled]="data.asChildDisable">As Child</mat-checkbox>
+	<div *ngFor="let attr of attributes; let i=index">
 		<mat-form-field appearance="standard">
 			<mat-label>Property Name</mat-label>
 			<input matInput [(ngModel)]="attr[0]" cdkFocusInitial>
@@ -15,6 +15,7 @@
 			<mat-label>Value</mat-label>
 			<input matInput [(ngModel)]="attr[1]">
 		</mat-form-field>
+		<mat-icon (click)="onRemoveAttr(i)">remove_circle_outline</mat-icon>
 	</div>
 	<div>
 		<mat-icon (click)="onAddAttr()" >add</mat-icon>

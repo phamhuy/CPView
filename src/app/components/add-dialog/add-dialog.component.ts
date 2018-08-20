@@ -11,10 +11,11 @@ export class AddDialogComponent implements OnInit {
 	result: any = {};
 
 	constructor(public dialogRef: MatDialogRef<AddDialogComponent>,
-		@Inject(MAT_DIALOG_DATA) public data: { asChildDisable: boolean, tags: Array<string> }) { }
+		@Inject(MAT_DIALOG_DATA) public data: { asChildDisable: boolean, tags: Array<string>, asChild?: boolean }) { }
 
 	ngOnInit() {
-		this.result['asChild'] = false;
+		this.result['asChild'] = this.data.asChild || false;
+		console.log(this.result.asChild);
 		this.result['newItem'] = {
 			type: 'element',
 			name: this.data.tags[0],
@@ -29,14 +30,6 @@ export class AddDialogComponent implements OnInit {
 		}
 	}
 
-	onTagChange() {
-		if (this.result.name == 'Menu') {
-			this.result.newItem['elements'] = [];
-		} else {
-			delete this.result.newItem.elements;
-		}
-	}
-
 	onCheckboxToggle() {
 		this.result.asChild = !this.result.asChild;
 	}
@@ -44,6 +37,10 @@ export class AddDialogComponent implements OnInit {
 	onAddAttr() {
 		this.attributes.push(['', '']);
 	}
+
+	onRemoveAttr(i) {
+    this.attributes.splice(i, 1);
+  }
 
 	onCancelClick() {
 		this.dialogRef.close();
