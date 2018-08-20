@@ -1,15 +1,18 @@
 <div class="view">
 	<mat-card>
-		<mat-card-title>
-			View
-			<mat-chip (click)="onCollapseExpand()">
-				<mat-icon>{{ collapseExpandIcon }}</mat-icon>
-			</mat-chip>
-		</mat-card-title>
+		<span>
+			<mat-card-title>View</mat-card-title>
+			<mat-card-subtitle>
+				<mat-form-field *ngFor="let propName of getAttributes()">
+					<mat-label>{{ propName }}</mat-label>
+					<input matInput [(ngModel)]="curView.attributes[propName]">
+				</mat-form-field>
+			</mat-card-subtitle>
+			<mat-icon (click)="onAddAttr()">add_circle_outline</mat-icon>
+			<mat-icon (click)="onRemove()">remove_circle_outline</mat-icon>
+		</span>
 		<mat-card-content>
-			<mat-accordion [multi]='true'>
-				<app-view-child [view]="view" [expanded]="expandAll"></app-view-child>
-			</mat-accordion>
+			<app-view-child [view]="curView"></app-view-child>
 		</mat-card-content>
 	</mat-card>
 </div>

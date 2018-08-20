@@ -28,7 +28,7 @@ export class EditDialogComponent implements OnInit {
     this.result['attributes'] = {};
 		for (let attr of this.attributes) {
 			this.result.attributes[attr[0]] = attr[1];
-		}
+    }
   }
 
   onRemoveAttr(i) {

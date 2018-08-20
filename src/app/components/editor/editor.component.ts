@@ -10,7 +10,7 @@ export class EditorComponent implements OnInit {
 	menu: any;
 	views: any;
 	orig_views: any;
-	currentView: any;
+	curViewTag: string;
 
 	constructor(
 		private fileService: FileService
@@ -19,30 +19,16 @@ export class EditorComponent implements OnInit {
 	ngOnInit() {
 		this.fileService.getConfig().subscribe(([menu, views]) => {
 			this.menu = menu;
-			this.orig_views = views;
-			this.views = this._flatten_views(views);
+			this.views = views;
 		});
 	}
 
 	onChangeView(viewtag) {
-		this.currentView = this.views[viewtag];
+		this.curViewTag = viewtag;
 	}
 
 	onClickSave() {
 		this.fileService.saveFile();
-	}
-
-	private _flatten_views(views) {
-		let flattent_views = {};
-		for (let item of views) {
-			flattent_views[item.attributes.viewtag] = item;
-		}
-
-		return flattent_views;
-	}
-
-	private _unflatten_views() {
-
 	}
 
 }

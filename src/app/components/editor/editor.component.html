@@ -3,5 +3,5 @@
 		<button mat-raised-button color="primary" (click)="onClickSave()" style="float: right;">Save</button>
 	</div>
   <app-menu [menu]="menu" (changeView)="onChangeView($event)"></app-menu>
-	<app-view [view]="currentView"></app-view>
+	<app-view [views]="views" [curViewTag]="curViewTag"></app-view>
 </div>

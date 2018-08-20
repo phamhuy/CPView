@@ -1,13 +1,30 @@
-<mat-expansion-panel [expanded]="expanded" [hideToggle]="isLeaf()">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      {{ view.name }}
-    </mat-panel-title>
-    <mat-panel-description>
-      {{ getAttributes() }}
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <ng-template matExpansionPanelContent *ngIf="!isLeaf()">
-    <app-view-child *ngFor="let item of view.elements" [view]="item" [expanded]="expanded"></app-view-child>
-  </ng-template>
-</mat-expansion-panel>
+<ng-container [ngSwitch]="view.name">
+  <ng-container *ngSwitchCase="'View'">
+      <ng-container *ngTemplateOutlet="viewChildren"></ng-container>
+  </ng-container>
+  <fieldset *ngSwitchCase="'Block'">
+    <legend>
+        <input [(ngModel)]="view.attributes.heading">
+        <mat-icon (click)="onAdd()">add_circle_outline</mat-icon>
+			  <mat-icon (click)="onRemove()">remove_circle_outline</mat-icon>
+    </legend>
+    <ng-container *ngTemplateOutlet="viewChildren"></ng-container>
+  </fieldset>
+
+  <ng-container *ngSwitchDefault>
+    <mat-form-field>
+      <mat-label>Tag</mat-label>
+      <input matInput [(ngModel)]="view.name">
+    </mat-form-field>
+    <mat-form-field *ngFor="let propName of getAttributes()">
+      <mat-label>{{ propName }}</mat-label>
+      <input matInput [(ngModel)]="view.attributes[propName]">
+    </mat-form-field>
+    <ng-container *ngTemplateOutlet="viewChildren"></ng-container>
+  </ng-container>
+
+</ng-container>
+
+<ng-template #viewChildren>
+  <app-view-child *ngFor="let child of view?.elements" [view]="child"></app-view-child>
+</ng-template>

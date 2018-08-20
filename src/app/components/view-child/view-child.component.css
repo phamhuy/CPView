@@ -1,0 +1,18 @@
+fieldset {
+  border: solid;
+  border-width: thin;
+}
+
+fieldset legend {
+  width: auto;
+  padding: 5px;
+  margin: 20px;
+}
+
+textarea {
+  max-width: 100px;
+}
+
+.mat-input-element {
+  width: fit-content;
+}
