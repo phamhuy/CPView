@@ -1,30 +1,49 @@
 <ng-container [ngSwitch]="view.name">
-  <ng-container *ngSwitchCase="'View'">
-      <ng-container *ngTemplateOutlet="viewChildren"></ng-container>
-  </ng-container>
-  <fieldset *ngSwitchCase="'Block'">
-    <legend>
-        <input [(ngModel)]="view.attributes.heading">
-        <mat-icon (click)="onAdd()">add_circle_outline</mat-icon>
-			  <mat-icon (click)="onRemove()">remove_circle_outline</mat-icon>
-    </legend>
-    <ng-container *ngTemplateOutlet="viewChildren"></ng-container>
-  </fieldset>
+	<!-- View -->
+	<ng-container *ngSwitchCase="'View'">
+		<app-view-child *ngFor="let child of view?.elements" [view]="child" [parentView]="view"></app-view-child>
+	</ng-container>
 
-  <ng-container *ngSwitchDefault>
-    <mat-form-field>
-      <mat-label>Tag</mat-label>
-      <input matInput [(ngModel)]="view.name">
-    </mat-form-field>
-    <mat-form-field *ngFor="let propName of getAttributes()">
-      <mat-label>{{ propName }}</mat-label>
-      <input matInput [(ngModel)]="view.attributes[propName]">
-    </mat-form-field>
-    <ng-container *ngTemplateOutlet="viewChildren"></ng-container>
-  </ng-container>
+	<!-- Block -->
+	<fieldset *ngSwitchCase="'Block'">
+		<legend>
+			<input [(ngModel)]="view.attributes.heading">
+			<mat-icon (click)="onAdd()">add_circle_outline</mat-icon>
+			<mat-icon (click)="onRemove()">remove_circle_outline</mat-icon>
+		</legend>
+		<app-view-child *ngFor="let child of view?.elements" [view]="child" [parentView]="view"></app-view-child>
+	</fieldset>
 
+	<!-- Stat, Column, Row, Dynamic, Activate, IsActive, and Limit -->
+	<ng-container *ngSwitchDefault>
+		<mat-expansion-panel expanded="true" disabled="true">
+			<mat-expansion-panel-header style="color: black;">
+				<mat-panel-title>{{ view.name }}</mat-panel-title>
+				<mat-panel-description>
+					<ng-container *ngFor="let attribute of attributes">
+						<span style="padding-left: 10px; color: grey;" [innerHTML]="attribute[0]"></span>
+						=
+						<span
+						#attr contenteditable="true"
+						(input)="onInputAttr(attribute[0], attr.innerHTML)"
+						style="border: solid rgb(179, 179, 179) 1px;"
+						[innerHTML]="attribute[1]">
+						</span>
+					</ng-container>
+					<!-- <mat-form-field *ngFor="let propName of getAttributes()">
+						<mat-label>{{ propName }}</mat-label>
+						<input matInput [(ngModel)]="view.attributes[propName]">
+					</mat-form-field> -->
+				</mat-panel-description>
+				<ng-container>
+					<mat-icon (click)="onEdit()">edit_attributes</mat-icon>
+					<mat-icon (click)="onAdd()">add_circle_outline</mat-icon>
+					<mat-icon (click)="onRemove()">remove_circle_outline</mat-icon>
+				</ng-container>
+			</mat-expansion-panel-header>
+			<ng-template matExpansionPanelContent>
+				<app-view-child *ngFor="let child of view?.elements" [view]="child" [parentView]="view"></app-view-child>
+			</ng-template>
+		</mat-expansion-panel>
+	</ng-container>
 </ng-container>
-
-<ng-template #viewChildren>
-  <app-view-child *ngFor="let child of view?.elements" [view]="child"></app-view-child>
-</ng-template>

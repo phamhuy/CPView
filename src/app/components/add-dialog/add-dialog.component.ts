@@ -15,7 +15,6 @@ export class AddDialogComponent implements OnInit {
 
 	ngOnInit() {
 		this.result['asChild'] = this.data.asChild || false;
-		console.log(this.result.asChild);
 		this.result['newItem'] = {
 			type: 'element',
 			name: this.data.tags[0],

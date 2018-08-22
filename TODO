@@ -1,15 +1,7 @@
-- Find out the views of the 9 tags:
-	+ view: a view
-	+ block: a box wrap around stats
-	+ stat: a stat or tabel of stats
-	+ column: a column in a table
-	+ row: a row in a column
-	+ dynamic: make the view dynamic
-	+ limit: ?
-	+ activate: ?
-	+ isactive: ?
-- Update View component to reflex the GUI
-- Add feature to edit a view in the View component.
+- Prepare/cleanup for delivery:
+	+ home component
+	+ login component
+	+ add a file that contains the string xml
 - Add right click to add/edit/remove a view
 - Add form validation to dialogs
 - Add keyboard shortcut
