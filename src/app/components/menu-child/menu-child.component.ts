@@ -42,11 +42,6 @@ export class MenuChildComponent implements OnInit {
     this.changeSelectedItem.emit(item);
   }
 
-  log(...args: any[]) {
-    for (let item of args)
-      console.log(item, typeof(item));
-  }
-
   isView(item) {
     return item.name == 'View' || item.name == 'DynamicView';
   }

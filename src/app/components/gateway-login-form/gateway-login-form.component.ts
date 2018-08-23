@@ -14,8 +14,4 @@ export class GatewayLoginFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
-    console.log('Gateway Login Form Submitted');
-  }
-
 }

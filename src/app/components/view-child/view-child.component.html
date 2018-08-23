@@ -23,10 +23,10 @@
 					<ng-container *ngFor="let attribute of attributes">
 						<span style="padding-left: 10px; color: grey;" [innerHTML]="attribute[0]"></span>
 						=
-						<span
-						#attr contenteditable="true"
+						<span #attr
+						contenteditable="true"
 						(input)="onInputAttr(attribute[0], attr.innerHTML)"
-						style="border: solid rgb(179, 179, 179) 1px;"
+						style="border: solid rgb(179, 179, 179) 1px; min-width: 30px;"
 						[innerHTML]="attribute[1]">
 						</span>
 					</ng-container>

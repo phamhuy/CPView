@@ -31,11 +31,6 @@ export class ViewChildComponent implements OnInit {
 		return !('elements' in this.view);
 	}
 
-	log(...args: any[]) {
-		for (let item of args)
-			console.log(item, typeof (item));
-	}
-
 	onEdit() {
 		let data = {
 			title: 'Edit',

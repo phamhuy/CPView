@@ -52,8 +52,4 @@ export class EditDialogComponent implements OnInit {
 		}
 	}
 
-	log(e) {
-		console.log(e);
-	}
-
 }
